@@ -3,10 +3,10 @@ import '../css/message.css'
 import Avatar from '@material-ui/core/Avatar';
 
 
-const Message = ({ timestamp, user, message }) => {
+const Message = ({ timestamp, user, message, photo }) => {
     return (
         <div className="message">
-            <Avatar src={user?.photo} />
+            <Avatar src={photo} />
             <div className="message__info">
                 <h4> {user}
                     <span className="message__timestamp">

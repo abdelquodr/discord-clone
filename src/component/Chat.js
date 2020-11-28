@@ -28,26 +28,23 @@ const Chat = () => {
                 .onSnapshot((snapshot) => {
                     setMessages(snapshot.docs.map((doc) => doc.data()))
                 });
-            console.log(messages)
         }
     }, [channelId]);
+
+
 
     const sendMessages = e => {
         e.preventDefault();
 
-        console.log('from USER chat>>>>>>', user)
-        console.log('from MESSAGE chat>>>>>>', messages)
-
-
-        db.collection('channels').doc('channelId').collection('messages').add(
+        db.collection('channels').doc(channelId).collection('messages').add(
             {
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 message: input,
                 user: user.displayName,
             }
         );
-        setInput('');
 
+        setInput('');
     }
 
     return (
@@ -60,6 +57,7 @@ const Chat = () => {
                         timestamp={message.timestamp}
                         message={message.message}
                         user={message.user}
+                        photo={user.photo}
                     />
                 ))}
             </div>
